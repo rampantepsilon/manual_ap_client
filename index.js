@@ -14,7 +14,7 @@ let template = [
                 role: 'toggledevtools',
                 accelerator: 'CommandOrControl+Alt+I',
                 enabled: true,
-                visible: true
+                visible: false
             }, {
                 label: 'Exit',
                 role: 'quit',
@@ -22,18 +22,20 @@ let template = [
             }
         ]
     }, {
-        label: 'Version ' + app.getVersion(),
+        label: 'Version ' + app.getVersion() + ' Build 20231005',
         click() {
             changeLog()
         }
     }
 ]
 
+var changeLogMsg = "Changes to " + app.getVersion();
+
 const changelogOptions = {
     type: 'info',
     buttons: ['Close'],
     title: 'Changelog',
-    message: 'Changes to v0.4.3-alpha',
+    message: changeLogMsg,
     detail: `
     - Location Marking Functional
     - Item Tracking Function
