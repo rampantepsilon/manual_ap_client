@@ -57,8 +57,15 @@
         //Sorting Arrays
         var locations = sessionStorage.getItem('locations').split(',');
         var uniqueCat = sessionStorage.getItem('uniqueCat').split(',');
-        var itemsList = sessionStorage.getItem('items').split(',');
-        var uniqueItems = sessionStorage.getItem('uniqueItems').split(',');
+        var itemsList = [];
+        var uniqueItems = sessionStorage.getItem('uniqueItems').split(',').sort();
+        function itemsListVar() {
+            var temp = sessionStorage.getItem('items').split(',');
+            for (var i = 0; i < temp.length; i += 2) {
+                itemsList.push([temp[i], temp[i + 1]]);
+            }
+        }
+        itemsListVar();
 
         function disconnect() {
             sessionStorage.setItem('host', "");
@@ -117,10 +124,14 @@
                                 var uniqueItemTemp = [];
 
                                 for (var i = 0; i < itemTemp.length; i++) {
-                                    itemsTemp.push(itemTemp[i]['category'][0])
-                                    if (!uniqueItemTemp.includes(itemsTemp[i])) {
-                                        uniqueItemTemp.push(itemsTemp[i]);
+                                    var itemsMultiTemp = [];
+                                    for (var j = 0; j < itemTemp[i]['category'].length; j++) {
+                                        itemsMultiTemp.push(itemTemp[i]['category'][j])
+                                        if (!uniqueItemTemp.includes(itemTemp[i]['category'][j])) {
+                                            uniqueItemTemp.push(itemTemp[i]['category'][j]);
+                                        }
                                     }
+                                    itemsTemp.push(itemsMultiTemp);
                                 }
                                 itemsTemp.push('Filler');
                                 uniqueItemTemp.push('Filler');
@@ -256,8 +267,10 @@
                         items.innerHTML += "<br><div align='center' class='items' id='" + uniqueItems[j] + "' style='font-weight: bold;'>" + uniqueItems[j] + "</div><br>";
                     }
                     for (var i = 0; i < itemIds.length; i++) {
-                        if (itemsList[i] == uniqueItems[j]) {
-                            items.innerHTML += "<span id='" + itemIds[i] + "2' style='display:none;'><div class='items itemsStyle' id='" + uniqueItems[j] + "' data-id='" + itemIds[i] + "'>" + itemNames[i] + " (<span id='" + itemIds[i] + "'>0</span>)</div></span>";
+                        for (var k = 0; k < itemsList[i].length; k++) {
+                            if (itemsList[i][k] == uniqueItems[j]) {
+                                items.innerHTML += "<span class='" + itemIds[i] + "2' style='display:none;'><div class='items itemsStyle' id='" + uniqueItems[j] + "' data-id='" + itemIds[i] + "'>" + itemNames[i] + " (<span class='" + itemIds[i] + "'>0</span>)</div></span>";
+                            }
                         }
                     }
                 }
@@ -267,9 +280,6 @@
                 }
             }
 
-            /*for (var i = 0; i < itemIds.length; i++) {
-                items.innerHTML += "<div>" + itemNames[i] + " (<span id='" + itemIds[i] + "'>0</span>)</div>";
-            }*/
             if (uniqueCat.length > 1) {
                 for (var j = 0; j < uniqueCat.length; j++) {
                     if (j == 0) {
@@ -307,18 +317,33 @@
         //Mark Received Items
         client.addListener(SERVER_PACKET_TYPE.RECEIVED_ITEMS, (packet) => {
             var packetItems = packet.items;
+            console.log(packetItems)
 
             for (var i = 0; i < packetItems.length; i++) {
                 var receivedItem = packetItems[i]['item'];
                 var receivedLocation = packetItems[i]['location'];
 
-                var currentCount = parseInt(document.getElementById(receivedItem).innerHTML);
-                document.getElementById(receivedItem).innerHTML = currentCount + 1;
-                if (receivedItem != 0) {
-                    document.getElementById(receivedItem + "2").style.display = 'block'
+                for (var j = 0; j < document.getElementsByClassName(receivedItem).length; j++) {
+                    var currentCount = parseInt(document.getElementsByClassName(receivedItem)[j].innerHTML);
+                    document.getElementsByClassName(receivedItem)[j].innerHTML = currentCount + 1;
+                    if (receivedItem != 0) {
+                        if (document.getElementsByClassName(receivedItem + "2")[j]) {
+                            document.getElementsByClassName(receivedItem + "2")[j].style.display = 'block'
+                        }
+                    }
                 }
 
-                document.getElementById(receivedLocation).style.display = 'none';
+                /*var currentCount = parseInt(document.getElementById(receivedItem).innerHTML);
+                document.getElementById(receivedItem).innerHTML = currentCount + 1;
+                if (receivedItem != 0) {
+                    if (document.getElementById(receivedItem + "2")) {
+                        document.getElementById(receivedItem + "2").style.display = 'block'
+                    }
+                }*/
+
+                if (document.getElementById(receivedLocation)) {
+                    document.getElementById(receivedLocation).style.display = 'none';
+                }
             }
             for (var i = 0; i < checkedLocations.length; i++) {
                 var receivedLocation2 = checkedLocations[i];
