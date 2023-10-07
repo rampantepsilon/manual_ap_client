@@ -22,7 +22,7 @@ let template = [
             }
         ]
     }, {
-        label: 'Version ' + app.getVersion() + ' Build 20231005',
+        label: 'Version ' + app.getVersion() + ' Build 20231007',
         click() {
             changeLog()
         }
@@ -37,6 +37,8 @@ const changelogOptions = {
     title: 'Changelog',
     message: changeLogMsg,
     detail: `
+    - HOTFIX: Fixed issue with apworlds with multiple item categories.
+    - HOTFIX: Fixed issue where formatting without apworld could cause the tracker to break.
     - Location Marking Functional
     - Item Tracking Function
     - Chat Log Active (Chat disabled)
