@@ -59,23 +59,26 @@
         var uniqueCat = sessionStorage.getItem('uniqueCat').split(',');
         var itemsList = [];
         var uniqueItems = sessionStorage.getItem('uniqueItems').split(',').sort();
+        var catCount = sessionStorage.getItem('count').split(',');
+
         function itemsListVar() {
             var temp = sessionStorage.getItem('items').split(',');
-            for (var i = 0; i < temp.length; i += 2) {
-                itemsList.push([temp[i], temp[i + 1]]);
+
+            for (var j = 0; j < catCount.length; j++) {
+                var tempList = [];
+                for (var i = 0; i < catCount[j]; i++) {
+                    tempList.push(temp[i])
+                }
+                itemsList.push(tempList);
             }
         }
         itemsListVar();
 
         function disconnect() {
-            sessionStorage.setItem('host', "");
-            sessionStorage.setItem('port', '');
-            sessionStorage.setItem('game', '');
-            sessionStorage.setItem('player', '');
-            sessionStorage.setItem('locations', '');
-            sessionStorage.setItem('uniqueCat', '');
-            sessionStorage.setItem('items', '');
-            sessionStorage.setItem('uniqueItems', '');
+            sessionStorage.removeItem('locations', '');
+            sessionStorage.removeItem('uniqueCat', '');
+            sessionStorage.removeItem('items', '');
+            sessionStorage.removeItem('uniqueItems', '');
 
             window.location.href = './server.html'
         }
@@ -122,9 +125,13 @@
                                 var itemTemp = JSON.parse(content);
                                 var itemsTemp = [];
                                 var uniqueItemTemp = [];
+                                var itemCatCount = [];
 
                                 for (var i = 0; i < itemTemp.length; i++) {
                                     var itemsMultiTemp = [];
+
+                                    itemCatCount.push(itemTemp[i]['category'].length);
+
                                     for (var j = 0; j < itemTemp[i]['category'].length; j++) {
                                         itemsMultiTemp.push(itemTemp[i]['category'][j])
                                         if (!uniqueItemTemp.includes(itemTemp[i]['category'][j])) {
@@ -138,6 +145,7 @@
 
                                 sessionStorage.setItem('items', itemsTemp);
                                 sessionStorage.setItem('uniqueItems', uniqueItemTemp);
+                                sessionStorage.setItem('count', itemCatCount);
                             })
                     }
                 })
@@ -267,7 +275,7 @@
                         items.innerHTML += "<br><div align='center' class='items' id='" + uniqueItems[j] + "' style='font-weight: bold;'>" + uniqueItems[j] + "</div><br>";
                     }
                     for (var i = 0; i < itemIds.length; i++) {
-                        for (var k = 0; k < itemsList[i].length; k++) {
+                        for (var k = 0; k < catCount[i]; k++) {
                             if (itemsList[i][k] == uniqueItems[j]) {
                                 items.innerHTML += "<span class='" + itemIds[i] + "2' style='display:none;'><div class='items itemsStyle' id='" + uniqueItems[j] + "' data-id='" + itemIds[i] + "'>" + itemNames[i] + " (<span class='" + itemIds[i] + "'>0</span>)</div></span>";
                             }
