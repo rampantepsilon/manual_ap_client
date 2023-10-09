@@ -22,7 +22,7 @@ let template = [
             }
         ]
     }, {
-        label: 'Version ' + app.getVersion() + ' Build 20231008',
+        label: 'Version ' + app.getVersion() + ' Build 20231009',
         click() {
             changeLog()
         }
