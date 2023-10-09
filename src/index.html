@@ -64,13 +64,18 @@
         function itemsListVar() {
             var temp = sessionStorage.getItem('items').split(',');
 
+            var k = 0;
+
             for (var j = 0; j < catCount.length; j++) {
                 var tempList = [];
                 for (var i = 0; i < catCount[j]; i++) {
-                    tempList.push(temp[i])
+                    tempList.push(temp[k])
+                    k += 1;
                 }
                 itemsList.push(tempList);
             }
+            itemsList.push(["Filler"])
+            catCount.push('1');
         }
         itemsListVar();
 
