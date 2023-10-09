@@ -39,6 +39,8 @@ const changelogOptions = {
     detail: `
     - HOTFIX (Build 20231009): Fixed issue where items weren't categorized correctly in style view.
     - HOTFIX (Build 20231009): Fixed issue where game.json filler items weren't displaying in style view.
+    - Added Counter to item categories to show visible items (will change to obtained in later patch).
+    - Added styling to player name in chat log.
     - HOTFIX (Build 20231008): Fixed issue with apworlds with single item categories not displaying locations.
     - HOTFIX (Build 20231008): Added ability to supply game name and styling info from apworld prior to connecting.
     - HOTFIX (Build 20231007): Fixed issue with apworlds with multiple item categories.
