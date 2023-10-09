@@ -164,8 +164,21 @@ client.addListener(SERVER_PACKET_TYPE.RECEIVED_ITEMS, (packet) => {
 
 //Chat Log
 client.addListener(SERVER_PACKET_TYPE.PRINT_JSON, (packet, message) => {
+    var newMessage = message;
+    if (message.includes(sessionStorage.getItem('player'))) {
+        var remMessage = message.split(sessionStorage.getItem('player'))[1];
+
+        newMessage = `<span style="color: rgb(0, 173, 145);">` + sessionStorage.getItem('player') + `</span>` + remMessage;
+
+        /*for (var i = 0; i < itemNames.length; i++){
+            if (newMessage.includes(itemNames[i])) {
+                var remMessage = message.split(itemNames[i])
+            }
+        }*/
+    }
+
     var oldmsg = document.getElementById('log').innerHTML;
-    document.getElementById('log').innerHTML = "<li>" + message + "</li>" + oldmsg;
+    document.getElementById('log').innerHTML = "<li>" + newMessage + "</li>" + oldmsg;
 });
 
 // Connect to the Archipelago server
