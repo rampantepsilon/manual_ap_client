@@ -37,10 +37,12 @@ const changelogOptions = {
     title: 'Changelog',
     message: changeLogMsg,
     detail: `
-    - HOTFIX 2: Fixed issue with apworlds with single item categories not displaying locations.
-    - HOTFIX 2: Added ability to supply game name and styling info from apworld prior to connecting.
-    - HOTFIX: Fixed issue with apworlds with multiple item categories.
-    - HOTFIX: Fixed issue where formatting without apworld could cause the tracker to break.
+    - HOTFIX (Build 20231009): Fixed issue where items weren't categorized correctly in style view.
+    - HOTFIX (Build 20231009): Fixed issue where game.json filler items weren't displaying in style view.
+    - HOTFIX (Build 20231008): Fixed issue with apworlds with single item categories not displaying locations.
+    - HOTFIX (Build 20231008): Added ability to supply game name and styling info from apworld prior to connecting.
+    - HOTFIX (Build 20231007): Fixed issue with apworlds with multiple item categories.
+    - HOTFIX (Build 20231007): Fixed issue where formatting without apworld could cause the tracker to break.
     - Location Marking Functional
     - Item Tracking Function
     - Chat Log Active (Chat disabled)
