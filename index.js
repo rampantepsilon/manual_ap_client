@@ -62,7 +62,7 @@ function createWindow() {
         webPreferences: { nodeIntegration: 'true', },
     })
 
-    win.loadFile('src/server.html')
+    win.loadFile('src/index.html')
 
     //win.webContents.openDevTools();
 }

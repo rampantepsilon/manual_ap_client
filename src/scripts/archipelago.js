@@ -192,6 +192,7 @@ client
     })
     .catch((error) => {
         console.error("Failed to connect:", error);
+        document.getElementById('log').innerHTML = "<li>Failed to connect: " + error + " (Player: " + sessionStorage.getItem('player') + " is not a valid player.)</li>";
         // Handle the connection error.
     });
 

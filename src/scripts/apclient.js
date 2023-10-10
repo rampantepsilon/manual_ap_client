@@ -38,7 +38,7 @@ function disconnect() {
     sessionStorage.removeItem('items', '');
     sessionStorage.removeItem('uniqueItems', '');
 
-    window.location.href = './server.html'
+    window.location.href = './index.html'
 }
 
 //Allow grouping from APWorld
