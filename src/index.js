@@ -27,7 +27,7 @@ function itemsListVar() {
         }
         itemsList.push(tempList);
     }
-    itemsList.push(["No Category"])
+    itemsList.push(["Game Filler"])
     catCount.push('1');
 }
 itemsListVar();
