@@ -115,9 +115,14 @@ function addToDisplay() {
     }
 
     document.querySelectorAll('.locations').forEach(el => el.addEventListener('click', event => {
-        var name = client.locations.name("Manual_SMOFestival", parseInt(event.target.getAttribute('data-el')));
-        var locationId1 = parseInt(event.target.getAttribute('data-el'));
-        client.locations.check(parseInt(event.target.getAttribute('data-el')));
+        if (event.target.getAttribute('data-el') != locationIds[locationIds.length - 1]) {
+            client.locations.check(parseInt(event.target.getAttribute('data-el')));
+        } else {
+            for (var i = 0; i < locationIds.length - 1; i++) {
+                client.locations.check(parseInt(locationIds[i]));
+                document.getElementById(locationIds[i]).style.display = 'none';
+            }
+        }
         document.getElementById(event.target.getAttribute('data-el')).style.display = 'none';
     }));
 
@@ -134,7 +139,6 @@ function addToDisplay() {
 //Mark Received Items
 client.addListener(SERVER_PACKET_TYPE.RECEIVED_ITEMS, (packet) => {
     var packetItems = packet.items;
-    console.log(packetItems)
 
     for (var i = 0; i < packetItems.length; i++) {
         var receivedItem = packetItems[i]['item'];
@@ -168,13 +172,11 @@ client.addListener(SERVER_PACKET_TYPE.PRINT_JSON, (packet, message) => {
     if (message.includes(sessionStorage.getItem('player'))) {
         var remMessage = message.split(sessionStorage.getItem('player'))[1];
 
-        newMessage = `<span style="color: rgb(0, 173, 145);">` + sessionStorage.getItem('player') + `</span>` + remMessage;
-
-        /*for (var i = 0; i < itemNames.length; i++){
-            if (newMessage.includes(itemNames[i])) {
-                var remMessage = message.split(itemNames[i])
-            }
-        }*/
+        if (message.indexOf(sessionStorage.getItem('player')) == 0) {
+            newMessage = `<span style="color: rgb(0, 173, 145);">` + sessionStorage.getItem('player') + `</span>` + remMessage;
+        } else {
+            newMessage = message.substring(0, message.indexOf(sessionStorage.getItem('player'))) + `<span style="color: rgb(0, 173, 145);">` + sessionStorage.getItem('player') + `</span>` + remMessage;
+        }
     }
 
     var oldmsg = document.getElementById('log').innerHTML;
