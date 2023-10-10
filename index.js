@@ -22,14 +22,14 @@ let template = [
             }
         ]
     }, {
-        label: 'Version ' + app.getVersion() + ' Build 20231009',
+        label: 'Version ' + app.getVersion() + ' Build 20231010',
         click() {
             changeLog()
         }
     }
 ]
 
-var changeLogMsg = "Changes to " + app.getVersion();
+var changeLogMsg = "Changes to " + app.getVersion() + "Build 20231010";
 
 const changelogOptions = {
     type: 'info',
@@ -37,21 +37,8 @@ const changelogOptions = {
     title: 'Changelog',
     message: changeLogMsg,
     detail: `
-    - HOTFIX (Build 20231009): Fixed issue where items weren't categorized correctly in style view.
-    - HOTFIX (Build 20231009): Fixed issue where game.json filler items weren't displaying in style view.
-    - Added Counter to item categories to show visible items (will change to obtained in later patch).
-    - Added styling to player name in chat log.
-    - HOTFIX (Build 20231008): Fixed issue with apworlds with single item categories not displaying locations.
-    - HOTFIX (Build 20231008): Added ability to supply game name and styling info from apworld prior to connecting.
-    - HOTFIX (Build 20231007): Fixed issue with apworlds with multiple item categories.
-    - HOTFIX (Build 20231007): Fixed issue where formatting without apworld could cause the tracker to break.
-    - Location Marking Functional
-    - Item Tracking Function
-    - Chat Log Active (Chat disabled)
-    - Added ability to style using .apworld
-    - Added safety check to ensure connecting to Manual AP Game
-    - Added ability to filter items by category
-    - Added ability to search for checks by name
+    - Fixed issue where clicking _Manual_Game_Complete_ wouldn't mark all checks as found.
+    - Fixed issue where items other player found for player connected wouldn't display properly.
     
     Upcoming Changes
     - Further formatting to clean up the appearance
