@@ -70,9 +70,9 @@ function addToDisplay() {
     if (uniqueItems.length > 1) {
         for (var j = 0; j < uniqueItems.length; j++) {
             if (j == 0) {
-                items.innerHTML += "<div align='center' class='items' id='" + uniqueItems[j] + "' style='font-weight: bold;'>" + uniqueItems[j] + " (<span id='" + uniqueItems[j] + "2'>0</span>)</div><br>";
+                items.innerHTML += "<div align='center' class='items' id='" + uniqueItems[j] + `' style='font-weight: bold;' onclick='itemCatClose("` + uniqueItems[j] + `")'>` + uniqueItems[j] + " (<span id='" + uniqueItems[j] + "2'>0</span>)</div><br>";
             } else {
-                items.innerHTML += "<br><div align='center' class='items' id='" + uniqueItems[j] + "' style='font-weight: bold;'>" + uniqueItems[j] + " (<span id='" + uniqueItems[j] + "2'>0</span>)</div><br>";
+                items.innerHTML += "<br><div align='center' class='items' id='" + uniqueItems[j] + `' style='font-weight: bold;' onclick="itemCatClose('` + uniqueItems[j] + `')">` + uniqueItems[j] + " (<span id='" + uniqueItems[j] + "2'>0</span>)</div><br>";
             }
             for (var i = 0; i < itemIds.length; i++) {
                 for (var k = 0; k < catCount[i]; k++) {
