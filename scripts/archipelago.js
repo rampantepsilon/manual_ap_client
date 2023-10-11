@@ -166,16 +166,31 @@ client.addListener(SERVER_PACKET_TYPE.RECEIVED_ITEMS, (packet) => {
     itemCounter();
 })
 
+document.getElementById('chatBox').addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        client.say($("#chatBox").val())
+        document.getElementById('chatBox').value = '';
+    }
+})
+
 //Chat Log
 client.addListener(SERVER_PACKET_TYPE.PRINT_JSON, (packet, message) => {
-    var newMessage = message;
-    if (message.includes(sessionStorage.getItem('player'))) {
-        var remMessage = message.split(sessionStorage.getItem('player'))[1];
+    var newMessage;
 
-        if (message.indexOf(sessionStorage.getItem('player')) == 0) {
+    if (packet['type'] == 'Chat') {
+        newMessage = packet['data'][0]['text'];
+    } else {
+        newMessage = message;
+    }
+
+    //Color Code for player
+    if (newMessage.includes(sessionStorage.getItem('player'))) {
+        var remMessage = newMessage.split(sessionStorage.getItem('player'))[1];
+
+        if (newMessage.indexOf(sessionStorage.getItem('player')) == 0) {
             newMessage = `<span style="color: rgb(0, 173, 145);">` + sessionStorage.getItem('player') + `</span>` + remMessage;
         } else {
-            newMessage = message.substring(0, message.indexOf(sessionStorage.getItem('player'))) + `<span style="color: rgb(0, 173, 145);">` + sessionStorage.getItem('player') + `</span>` + remMessage;
+            newMessage = newMessage.substring(0, newMessage.indexOf(sessionStorage.getItem('player'))) + `<span style="color: rgb(0, 173, 145);">` + sessionStorage.getItem('player') + `</span>` + remMessage;
         }
     }
 
