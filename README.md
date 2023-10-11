@@ -1,5 +1,6 @@
 # Manual Archipelago Web Client
 Web client for Manual Archipelago worlds. (Replacement for the Manual AP Client)
+
 Hosted at https://rampantepsilon.github.io/ManualAPClient
 
 ## One Client to Rule Them All!
