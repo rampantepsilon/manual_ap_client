@@ -1,11 +1,10 @@
-var versionTag = "Archipelago Web Client v0.4.3 Build 20231010";
+var versionTag = "Archipelago Web Client v0.4.3 Build 20231011";
 
 document.getElementById('buildText').innerHTML = versionTag;
 
 document.getElementById('changelog').innerHTML = `<h3>Changes to ` + versionTag + `</h3>
 <ul>
-<li>Fixed issue where clicking _Manual_Game_Complete_ wouldn't mark all checks as found.</li>
-<li>Fixed issue where items other player found for player connected wouldn't display properly.</li>
+<li>Added ability to hide item categories by clicking on them.</li>
 </ul>
 <h4>Upcoming Changes</h4>
 <ul>
