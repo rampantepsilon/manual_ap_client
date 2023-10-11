@@ -5,6 +5,8 @@ document.getElementById('buildText').innerHTML = versionTag;
 document.getElementById('changelog').innerHTML = `<h3>Changes to ` + versionTag + `</h3>
 <ul>
 <li>Added ability to hide item categories by clicking on them.</li>
+<li>Added Chat Functionality</li>
+<li>Player name colored when used in chat (Useful for @'ing another player)</li>
 </ul>
 <h4>Upcoming Changes</h4>
 <ul>
