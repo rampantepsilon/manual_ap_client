@@ -101,7 +101,7 @@ $("#style").on("change", function (evt) {
                             document.getElementById('game').value = "Manual_" + gameTemp['game'] + gameTemp['player'];
                         }
                         if (gameTemp['background-image']) {
-                            document.body.style.backgroundImage = "url(gameTemp['background-image'])";
+                            document.html.style.backgroundImage = "url(gameTemp['background-image'])";
                             sessionStorage.setItem('background', gameTemp['background-image'])
                         }
                     })
