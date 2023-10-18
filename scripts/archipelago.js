@@ -124,7 +124,7 @@ function addToDisplay() {
                 }
 
                 if (locations[i] == uniqueCat[j]) {
-                    locationsPage.innerHTML += "<div class='locations " + combineStyle + "' id='" + locationIds[i] + "' data-el='" + locationIds[i] + `' class='locations' data-vis='` + uniqueCat[j] + `'>` + locationNames[i] + "</div>";
+                    locationsPage.innerHTML += "<div class='locations " + combineStyle + "' id='" + locationIds[i] + "' data-el='" + locationIds[i] + `' data-vis='` + uniqueCat[j] + `'>` + locationNames[i] + "</div>";
                 }
             }
         }
