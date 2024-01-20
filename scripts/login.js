@@ -43,7 +43,7 @@ function complete(host, port, game, player) {
     window.location.href = './apclient.html'
 }
 
-function complete(host, port, player) {
+function completeText(host, port, player) {
     sessionStorage.setItem('host', host);
     sessionStorage.setItem('port', port);
     sessionStorage.setItem('player', player);
