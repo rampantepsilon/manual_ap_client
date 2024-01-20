@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Manual Archipelago Web Client</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="jszip.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+    <div class="loginTitle">
+        <div class="textTitle">MANUAL ARCHIPELAGO WEB CLIENT</div>
+    </div>
+    <table
+        style="height: calc(97vh - 150px); background-color: rgba(68, 68, 68, 0.76); padding: 20px; border-radius: 25px; border: 2px solid white;">
+        <tr>
+            <td colspan="3" style="vertical-align: top; width: 100%;">
+                <div id="log"></div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" align="right" style="height: 100px">
+                <table width="100%">
+                    <tr>
+                        <td style="vertical-align: bottom; width: 50%" align="center">Chat<br><input type="text"
+                                id="chatBox" style="width: 100%;"></td>
+                        <td style='vertical-align: bottom; text-align: right; width: 25%;'>
+                            <div><button class="connButton" onclick="disconnect()">Disconnect</button></div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <div style="text-align: center; width: 100%; position:fixed; bottom: 0px;" id="buildText" onclick="changeLog()">
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <span id="changelog"></span>
+        </div>
+
+    </div>
+
+    <script src="scripts/build.js"></script>
+    <script src="scripts/textOnly/apclient.js"></script>
+    <script type="module" src="scripts/textOnly/archipelago.js"></script>
+</body>
+
+</html>
