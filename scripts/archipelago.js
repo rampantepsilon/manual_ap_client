@@ -183,36 +183,40 @@ client.addListener(SERVER_PACKET_TYPE.PRINT_JSON, (packet, message) => {
 
         for (i in packet['data']) {
             if (packet['data'][i]['type'] == 'player_id') {
-                tempTxt += "<span style='color: rgb(0, 173, 145);'>" + client.players.name(parseInt(packet['data'][i]['text'])) + "</span>";
+                if (client.players.name(parseInt(packet['data'][i]['text'])) == sessionStorage.getItem('player')) {
+                    tempTxt += "<span style='color: rgb(0, 173, 145);'>" + client.players.name(parseInt(packet['data'][i]['text'])) + "</span>";
+                } else {
+                    tempTxt += "<span style='color: lightblue;'>" + client.players.name(parseInt(packet['data'][i]['text'])) + "</span>";
+                }
             } else if (packet['data'][i]['type'] == 'item_id') {
                 //Progression Items
                 if (packet['data'][i]['flags'] == '1') {
-                    tempTxt += "<span style='color:orange'>" + client.items.name(client.players.game(packet['data'][i]['player']), parseInt(packet['data'][i]['text'])) + "</span>";
+                    tempTxt += "<span style='color:purple'>" + client.items.name(client.players.game(packet['data'][i]['player']), parseInt(packet['data'][i]['text'])) + "</span>";
                     colorTemp = '1';
                 }
 
                 //Useful Items
                 if (packet['data'][i]['flags'] == '2') {
-                    tempTxt += "<span style='color:yellow'>" + client.items.name(client.players.game(packet['data'][i]['player']), parseInt(packet['data'][i]['text'])) + "</span>";
+                    tempTxt += "<span style='color:blue'>" + client.items.name(client.players.game(packet['data'][i]['player']), parseInt(packet['data'][i]['text'])) + "</span>";
                     colorTemp = '2';
                 }
 
                 //Filler Items
                 if (packet['data'][i]['flags'] == '0') {
-                    tempTxt += "<span style='color:lightblue'>" + client.items.name(client.players.game(packet['data'][i]['player']), parseInt(packet['data'][i]['text'])) + "</span>";
+                    tempTxt += "<span style='color:cornflowerblue'>" + client.items.name(client.players.game(packet['data'][i]['player']), parseInt(packet['data'][i]['text'])) + "</span>";
                     colorTemp = '0';
                 }
             } else if (packet['data'][i]['type'] == 'location_id') {
                 if (colorTemp == '1') {
-                    tempTxt += "<span style='color:orange'>" + client.locations.name(client.players.game(packet['data'][i]['player']), parseInt(packet['data'][i]['text'])) + "</span>";
+                    tempTxt += "<span style='color:purple'>" + client.locations.name(client.players.game(packet['data'][i]['player']), parseInt(packet['data'][i]['text'])) + "</span>";
                 }
 
                 if (colorTemp == '2') {
-                    tempTxt += "<span style='color:yellow'>" + client.locations.name(client.players.game(packet['data'][i]['player']), parseInt(packet['data'][i]['text'])) + "</span>";
+                    tempTxt += "<span style='color:blue'>" + client.locations.name(client.players.game(packet['data'][i]['player']), parseInt(packet['data'][i]['text'])) + "</span>";
                 }
 
                 if (colorTemp == '0') {
-                    tempTxt += "<span style='color:lightblue'>" + client.locations.name(client.players.game(packet['data'][i]['player']), parseInt(packet['data'][i]['text'])) + "</span>";
+                    tempTxt += "<span style='color:cornflowerblue'>" + client.locations.name(client.players.game(packet['data'][i]['player']), parseInt(packet['data'][i]['text'])) + "</span>";
                 }
             } else {
                 tempTxt += packet['data'][i]['text'];
@@ -221,13 +225,13 @@ client.addListener(SERVER_PACKET_TYPE.PRINT_JSON, (packet, message) => {
         testMessage = tempTxt;
     }
 
+    //Update Hints
+    getHints();
+
     //Return message to player
     var newMessage = testMessage;
     var oldmsg = document.getElementById('log').innerHTML;
     document.getElementById('log').innerHTML = "<div class='textMsg'>" + newMessage + "</div>" + oldmsg + "";
-
-    //Update Hints
-    getHints();
 });
 
 // Connect to the Archipelago server

@@ -271,6 +271,7 @@ var hintItem = [];
 var hintFound = [];
 
 function updateText() {
+    document.getElementById('hints').innerHTML = '';
     var hintTxt = '';
     /* Should look like
     [Hint]: [receiving_player]'s [hintItem] is at [hintLocation] in [finding_player]'s World. (FOUND/NOT FOUND)
