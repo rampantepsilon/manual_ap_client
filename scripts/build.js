@@ -1,11 +1,11 @@
-var versionTag = "Archipelago Web Client v0.4.5 Build 20240414 Built by <a style='color:white;' href='https://github.com/rampantepsilon'>RampantEpsilon</a>";
+var versionTag = "Archipelago Web Client v0.5.0 Build 20240804 Built by <a style='color:white;' href='https://github.com/rampantepsilon'>RampantEpsilon</a>";
 
 document.getElementById('buildText').innerHTML = versionTag;
 
 document.getElementById('changelog').innerHTML = `<h4>Please note: Manual Archipelago is not part of the main Archipelago. Any issues with the web client or manuals in general should be asked in the <a href='https://discord.gg/T5bcsVHByx' style='color:white'>Manual Archipelago Discord Server</a></h4>
 <h3>Changes to ` + versionTag + `</h3>
 <ul>
-<li>Added update for v0.4.5 of Archipelago</li>
+<li>Added update for v0.5.0 of Archipelago</li>
 </ul>
 <h4>Known Issues</h4>
 <ul>

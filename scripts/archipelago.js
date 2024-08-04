@@ -16,9 +16,9 @@ const connectionInfo = {
     name: sessionStorage.getItem('player'), // Replace with the player slot name.
     items_handling: ITEMS_HANDLING_FLAGS.REMOTE_ALL,
     version: {
-        build: 5,
+        build: 0,
         major: 0,
-        minor: 4,
+        minor: 5,
     },
     tags: JSON.parse(sessionStorage.getItem('tags'))//tags: ['AP', 'DeathLink', '(WIP)']
 };
