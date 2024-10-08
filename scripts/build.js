@@ -6,9 +6,13 @@ document.getElementById('changelog').innerHTML = `<h4>Please note: Manual Archip
 <h3>Changes to ` + versionTag + `</h3>
 <ul>
 <li>Added update for v0.5.0 of Archipelago</li>
+<li>Fixed bug where Victory button wouldn't appear for seeds</li>
+<li>Fixed bug where last check couldn't be marked in the client</li>
 </ul>
 <h4>Known Issues</h4>
 <ul>
+<li>Victory button cannot be hidden.</li>
+<li>Hints not retaining marked status upon chat refresh.</li>
 <li>Possible issue with Traps not showing proper colors.</li>
 <li>Hints not showing proper coloring. (Should be updated on the next release.)</li>
 </ul>`
